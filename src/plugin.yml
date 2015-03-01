@@ -1,0 +1,13 @@
+name: InfiniControl
+version: 1.0
+description: Denys the use of Unicode characters, so they can't bypass a swear filter
+author: Styyxx
+main: com.maxisociety.nscp.NSCP
+commands:
+    ireload:
+        description: Reloads the plugin from the modified configuration.
+        aliases: [icreload, infinireload, icontrolreload]
+    stats:
+        description: Gets the statistics for a player. Warnings, etc.
+    announce:
+        description: Announces something now.

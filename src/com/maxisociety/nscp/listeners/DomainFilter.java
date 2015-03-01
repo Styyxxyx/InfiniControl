@@ -1,0 +1,116 @@
+package com.maxisociety.nscp.listeners;
+
+import com.maxisociety.nscp.NSCP;
+import com.maxisociety.nscp.util.Util;
+import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
+import org.bukkit.event.Listener;
+import org.bukkit.event.player.AsyncPlayerChatEvent;
+import org.bukkit.event.player.PlayerCommandPreprocessEvent;
+import org.bukkit.plugin.Plugin;
+
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+public class DomainFilter implements Listener {
+
+    Plugin plugin;
+
+    public DomainFilter(Plugin plugin) {
+        this.plugin = plugin;
+    }
+
+    @EventHandler(priority = EventPriority.NORMAL)
+    public void NoIP(final AsyncPlayerChatEvent event) {
+
+        if (!NSCP.getOptions().FILTER_DOMAINS
+                || event.getPlayer().hasPermission("filter.bypass.domains"))
+            return;
+        String messageToSendToAdmins = event.getMessage();
+        String message = event.getMessage();
+
+        List<String> exceptions = NSCP.getOptions().getURLExceptions();
+
+        boolean found = false;
+
+        Pattern p = Pattern
+                .compile("\\b\\d{1,3}+\\p{P}*\\d{1,3}+\\p{P}*\\d{1,3}+\\p{P}*\\d{1,3}+\\b|((?:[\\w]+\\.)+)([a-zA-Z]{2,4})");
+        Matcher m = p.matcher(message);
+        mainLoop:
+        while (m.find()) {
+            for (String s : exceptions) {
+                if (s.contains(m.group()))
+                    continue mainLoop;
+            }
+            found = true;
+            message = message.replace(m.group(), NSCP.getOptions()
+                    .getReplacementForAds());
+            for (Player p1 : Bukkit.getServer().getOnlinePlayers()) {
+                if (p1.hasPermission("ic.admin"))
+                    Util.sendMessage(p1, "Player: &6"
+                            + event.getPlayer().getName() + "&7 AKA:&6 "
+                            + event.getPlayer().getDisplayName()
+                            + " &7tried to advertise. Message: &6"
+                            + messageToSendToAdmins + "&7.");
+            }
+        }
+        if (NSCP.getOptions().kickOnAdvertise() && found) {
+            Util.asyncKick(event.getPlayer(), NSCP.getOptions()
+                    .getKickMessage(), plugin);
+            event.setCancelled(true);
+        } else {
+            event.setMessage(message);
+        }
+
+    }
+
+    @EventHandler(priority = EventPriority.NORMAL)
+    public void NoIPMessage(final PlayerCommandPreprocessEvent event) {
+
+        if (!NSCP.getOptions().FILTER_DOMAINS
+                || event.getPlayer().hasPermission("filter.bypass.domains"))
+            return;
+        String messageToSendToAdmins = event.getMessage();
+        String message = event.getMessage();
+
+        List<String> exceptions = NSCP.getOptions().getURLExceptions();
+
+        boolean found = false;
+        boolean is = true;
+
+        String isrly = is || !is ? "Yes" : "No";
+
+        Pattern p = Pattern
+                .compile("\\b\\d{1,3}+\\p{P}*\\d{1,3}+\\p{P}*\\d{1,3}+\\p{P}*\\d{1,3}+\\b|((?:[\\w]+\\.)+)([a-zA-Z]{2,4})");
+        Matcher m = p.matcher(message);
+        mainLoop:
+        while (m.find()) {
+            for (String s : exceptions) {
+                if (s.contains(m.group()))
+                    continue mainLoop;
+            }
+            found = true;
+            message = message.replace(m.group(), NSCP.getOptions()
+                    .getReplacementForAds());
+            for (Player p1 : Bukkit.getServer().getOnlinePlayers()) {
+                if (p1.hasPermission("ic.admin"))
+                    Util.sendMessage(p1, "Player: &6"
+                            + event.getPlayer().getName() + "&7 AKA:&6 "
+                            + event.getPlayer().getDisplayName()
+                            + " &7tried to advertise. Message: &6"
+                            + messageToSendToAdmins + "&7.");
+            }
+        }
+        if (NSCP.getOptions().kickOnAdvertise() && found) {
+            Util.asyncKick(event.getPlayer(), NSCP.getOptions()
+                    .getKickMessage(), plugin);
+            event.setCancelled(true);
+        } else {
+            event.setMessage(message);
+        }
+
+    }
+}
