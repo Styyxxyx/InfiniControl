@@ -56,6 +56,10 @@ public class Util {
 		}
 	}
 
+    public static String colorString(String s, char symbol){
+        return ChatColor.translateAlternateColorCodes(symbol, s);
+    }
+
 	public static ArrayList<String> getLinesFromFile(String fileName,
 			Plugin plugin) {
 		ArrayList<String> lines = new ArrayList<String>();
