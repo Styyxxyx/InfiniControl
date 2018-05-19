@@ -14,7 +14,7 @@ public class UnicodeFilter implements Listener {
     @EventHandler(priority = EventPriority.HIGH)
     public void onChat(AsyncPlayerChatEvent event) {
 
-        if (!NSCP.getOptions().FILTER_UNICODE
+        if (!NSCP.getOptions().filterUnicode()
                 || event.getPlayer().hasPermission("filter.bypass.unicode"))
             return;
         Pattern regex = Pattern.compile(".*[^\\x20-\\x7F].*");
