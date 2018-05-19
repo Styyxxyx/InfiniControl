@@ -10,7 +10,7 @@ public class CapsFilter implements Listener {
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void antiCaps(AsyncPlayerChatEvent event) {
-        if (!NSCP.getOptions().FILTER_CAPSLOCK
+        if (!NSCP.getOptions().filterCapsLock()
                 || event.getPlayer().hasPermission("filter.bypass.caps"))
             return;
         String message = event.getMessage();

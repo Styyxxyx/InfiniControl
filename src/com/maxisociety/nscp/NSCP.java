@@ -5,6 +5,7 @@ import com.maxisociety.nscp.commands.CmdReload;
 import com.maxisociety.nscp.commands.CmdStats;
 import com.maxisociety.nscp.commands.CmdWarn;
 import com.maxisociety.nscp.listeners.*;
+import com.maxisociety.nscp.network.Network;
 import com.maxisociety.nscp.tasks.AutoAnnounce;
 import com.maxisociety.nscp.util.Options;
 import com.maxisociety.nscp.util.Util;
@@ -21,6 +22,7 @@ public class NSCP extends JavaPlugin {
 
     private static Options options;
     private static Util util;
+    private static Network network;
 
 
     public static HashMap<String, Material> bowGunBlock = new HashMap<>();
@@ -41,6 +43,9 @@ public class NSCP extends JavaPlugin {
         options = new Options(this);
         util = new Util(this);
         options.init();
+        network = new Network();
+        network.connect();
+        network.init();
 
         Bukkit.getServer()
                 .getScheduler()
@@ -91,6 +96,11 @@ public class NSCP extends JavaPlugin {
                     Arrays.asList(announcements));
             getConfig().addDefault("autoannounce.interval", 60);
             getConfig().addDefault("autoannouce.prefix", "&2[&aBlockArray&2] ");
+            getConfig().addDefault("mysql.host", "localhost");
+            getConfig().addDefault("mysql.username", "username");
+            getConfig().addDefault("mysql.password", "password");
+            getConfig().addDefault("mysql.database", "infinicontrol");
+            getConfig().addDefault("mysql.table", "infinidata");
         }
         saveConfig();
     }

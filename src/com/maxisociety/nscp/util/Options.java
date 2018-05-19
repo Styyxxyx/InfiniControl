@@ -13,9 +13,12 @@ public class Options {
     private boolean FILTER_PROFANITY;
     private boolean ENABLE_SPAM_PROTECTION;
     private boolean FILTER_DOMAINS;
-
-    Plugin plugin;
-
+    private String MYSQL_USERNAME;
+    private String MYSQL_PASSWORD;
+    private String MYSQL_DATABASE;
+    private String MYSQL_TABLE;
+    private String MYSQL_HOST;
+    private Plugin plugin;
     private Random rand = new Random();
 
     public Options(Plugin plugin) {
@@ -23,15 +26,16 @@ public class Options {
     }
 
     public void init() {
-        FILTER_UNICODE = plugin.getConfig()
-                .getBoolean("options.filter.unicode");
+        FILTER_UNICODE = plugin.getConfig().getBoolean("options.filter.unicode");
         FILTER_CAPSLOCK = plugin.getConfig().getBoolean("options.filter.caps");
-        FILTER_PROFANITY = plugin.getConfig().getBoolean(
-                "options.filter.profanity");
-        ENABLE_SPAM_PROTECTION = plugin.getConfig().getBoolean(
-                "options.filter.unicode");
-        FILTER_DOMAINS = plugin.getConfig()
-                .getBoolean("options.filter.domains");
+        FILTER_PROFANITY = plugin.getConfig().getBoolean("options.filter.profanity");
+        ENABLE_SPAM_PROTECTION = plugin.getConfig().getBoolean("options.filter.unicode");
+        FILTER_DOMAINS = plugin.getConfig().getBoolean("options.filter.domains");
+        MYSQL_HOST = plugin.getConfig().getString("mysql.host");
+        MYSQL_USERNAME = plugin.getConfig().getString("mysql.username");
+        MYSQL_PASSWORD = plugin.getConfig().getString("mysql.password");
+        MYSQL_DATABASE = plugin.getConfig().getString("mysql.database");
+        MYSQL_TABLE = plugin.getConfig().getString("mysql.table");
     }
 
     public List<String> getCurseWords() {
@@ -113,5 +117,25 @@ public class Options {
 
     public boolean filterDomains() {
         return FILTER_DOMAINS;
+    }
+
+    public String getMYSQL_USERNAME() {
+        return MYSQL_USERNAME;
+    }
+
+    public String getMYSQL_PASSWORD() {
+        return MYSQL_PASSWORD;
+    }
+
+    public String getMYSQL_DATABASE() {
+        return MYSQL_DATABASE;
+    }
+
+    public String getMYSQL_TABLE() {
+        return MYSQL_TABLE;
+    }
+
+    public String getMYSQL_HOST() {
+        return MYSQL_HOST;
     }
 }
