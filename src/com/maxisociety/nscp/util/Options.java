@@ -1,95 +1,117 @@
 package com.maxisociety.nscp.util;
 
+import org.bukkit.plugin.Plugin;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import org.bukkit.plugin.Plugin;
-
 public class Options {
-	public boolean FILTER_UNICODE;
-	public boolean FILTER_CAPSLOCK;
-	public boolean FILTER_PROFANITY;
-	public boolean ENABLE_SPAM_PROTECTION;
-	public boolean FILTER_DOMAINS;
-	Plugin plugin;
 
-	private Random rand = new Random();
+    private boolean FILTER_UNICODE;
+    private boolean FILTER_CAPSLOCK;
+    private boolean FILTER_PROFANITY;
+    private boolean ENABLE_SPAM_PROTECTION;
+    private boolean FILTER_DOMAINS;
 
-	public Options(Plugin plugin) {
-		this.plugin = plugin;
-	}
+    Plugin plugin;
 
-	public void init() {
-		FILTER_UNICODE = plugin.getConfig()
-				.getBoolean("options.filter.unicode");
-		FILTER_CAPSLOCK = plugin.getConfig().getBoolean("options.filter.caps");
-		FILTER_PROFANITY = plugin.getConfig().getBoolean(
-				"options.filter.profanity");
-		ENABLE_SPAM_PROTECTION = plugin.getConfig().getBoolean(
-				"options.filter.unicode");
-		FILTER_DOMAINS = plugin.getConfig()
-				.getBoolean("options.filter.domains");
-	}
+    private Random rand = new Random();
 
-	public List<String> getCurseWords() {
-		List<String> curseWords = plugin.getConfig().getStringList(
-				"curse.words");
+    public Options(Plugin plugin) {
+        this.plugin = plugin;
+    }
 
-		List<String> fixedCurseWords = new ArrayList<String>();
+    public void init() {
+        FILTER_UNICODE = plugin.getConfig()
+                .getBoolean("options.filter.unicode");
+        FILTER_CAPSLOCK = plugin.getConfig().getBoolean("options.filter.caps");
+        FILTER_PROFANITY = plugin.getConfig().getBoolean(
+                "options.filter.profanity");
+        ENABLE_SPAM_PROTECTION = plugin.getConfig().getBoolean(
+                "options.filter.unicode");
+        FILTER_DOMAINS = plugin.getConfig()
+                .getBoolean("options.filter.domains");
+    }
 
-		for (String s : curseWords) {
-			fixedCurseWords.add(s.toLowerCase());
-		}
-		return fixedCurseWords;
-	}
+    public List<String> getCurseWords() {
+        List<String> curseWords = plugin.getConfig().getStringList(
+                "curse.words");
 
-	public String getReplacement() {
-		return plugin.getConfig().getString("curse.replacement");
-	}
+        List<String> fixedCurseWords = new ArrayList<>();
 
-	public int getDelay() {
-		return plugin.getConfig().getInt("autoannounce.interval");
-	}
+        for (String s : curseWords) {
+            fixedCurseWords.add(s.toLowerCase());
+        }
+        return fixedCurseWords;
+    }
 
-	public int getRandNum() {
-		return rand.nextInt(getAnnouncements().size());
-	}
+    public String getReplacement() {
+        return plugin.getConfig().getString("curse.replacement");
+    }
 
-	public String getRandEntry() {
-		return (String) getAnnouncements().get(getRandNum());
-	}
+    public int getDelay() {
+        return plugin.getConfig().getInt("autoannounce.interval");
+    }
 
-	public List<?> getAnnouncements() {
-		return plugin.getConfig().getList("autoannounce.entries");
-	}
+    private int getRandNum() {
+        return rand.nextInt(getAnnouncements().size());
+    }
 
-	public int getCapsThreshold() {
-		return plugin.getConfig().getInt("options.caps.threshold");
-	}
+    public String getRandEntry() {
+        return (String) getAnnouncements().get(getRandNum());
+    }
 
-	public int getCapstrigger() {
-		return plugin.getConfig().getInt("options.caps.sentenceTriggerSize");
-	}
+    private List<?> getAnnouncements() {
+        return plugin.getConfig().getList("autoannounce.entries");
+    }
 
-	public String getReplacementForAds() {
-		return plugin.getConfig().getString(
-				"options.domains.advertisement.replaceWith");
-	}
+    public int getCapsThreshold() {
+        return plugin.getConfig().getInt("options.caps.threshold");
+    }
 
-	public boolean kickOnAdvertise() {
-		return plugin.getConfig().getBoolean("options.domains.kickOnAdvertise");
-	}
+    public int getCapstrigger() {
+        return plugin.getConfig().getInt("options.caps.sentenceTriggerSize");
+    }
 
-	public String getKickMessage() {
-		return plugin.getConfig().getString("options.domains.kickMessage");
-	}
+    public String getReplacementForAds() {
+        return plugin.getConfig().getString(
+                "options.domains.advertisement.replaceWith");
+    }
 
-	public List<String> getURLExceptions() {
-		return plugin.getConfig().getStringList("options.domains.exceptions");
-	}
+    public boolean kickOnAdvertise() {
+        return plugin.getConfig().getBoolean("options.domains.kickOnAdvertise");
+    }
 
-	public String getPrefix() {
-		return plugin.getConfig().getString("autoannouce.prefix");
-	}
+    public String getKickMessage() {
+        return plugin.getConfig().getString("options.domains.kickMessage");
+    }
+
+    public List<String> getURLExceptions() {
+        return plugin.getConfig().getStringList("options.domains.exceptions");
+    }
+
+    public String getPrefix() {
+        return plugin.getConfig().getString("autoannouce.prefix");
+    }
+
+    public boolean filterUnicode() {
+        return FILTER_UNICODE;
+    }
+
+    public boolean filterCapsLock() {
+        return FILTER_CAPSLOCK;
+    }
+
+    public boolean enableProfanityFilter() {
+        return FILTER_PROFANITY;
+    }
+
+    public boolean enableSpamProtection() {
+        return ENABLE_SPAM_PROTECTION;
+    }
+
+    public boolean filterDomains() {
+        return FILTER_DOMAINS;
+    }
 }

@@ -1,7 +1,6 @@
 package com.maxisociety.nscp.listeners;
 
 import com.maxisociety.nscp.NSCP;
-import com.maxisociety.nscp.util.Util;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
@@ -20,11 +19,11 @@ public class FilterProfanity implements Listener {
         if (event.isCancelled())
             return;
 
-        if (!NSCP.getOptions().FILTER_PROFANITY
+        if (!NSCP.getOptions().enableProfanityFilter()
                 || event.getPlayer().hasPermission("filter.bypass.profanity"))
             return;
 
-        String response = "";
+        String response;
 
         boolean apiFind = false;
 
@@ -41,7 +40,7 @@ public class FilterProfanity implements Listener {
                         "");
                 if (response.equalsIgnoreCase("true")) {
                     event.setCancelled(true);
-                    Util.sendMessage(event.getPlayer(),
+                    NSCP.getUtil().sendMessage(event.getPlayer(),
                             "&cProfanity is not tolerated!");
                     apiFind = true;
                     break;
@@ -60,10 +59,8 @@ public class FilterProfanity implements Listener {
             for (String s : message.split(" ")) {
                 if (cussWords.contains(s.toLowerCase())) {
                     fixedMessage += NSCP.getOptions().getReplacement();
-                    continue;
                 } else {
                     fixedMessage += s + " ";
-                    continue;
                 }
             }
             event.setMessage(fixedMessage);

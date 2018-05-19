@@ -84,7 +84,6 @@ public class Antispam implements Listener {
     }
 
 
-
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onSpawn(CreatureSpawnEvent event) {
         if (event.getEntity() instanceof IronGolem) {

@@ -1,7 +1,6 @@
 package com.maxisociety.nscp.listeners;
 
 import com.maxisociety.nscp.NSCP;
-import com.maxisociety.nscp.util.Util;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
@@ -23,7 +22,7 @@ public class UnicodeFilter implements Listener {
         Matcher regexMatcher = regex.matcher(event.getMessage());
 
         if (regexMatcher.find()) {
-            Util.sendMessage(event.getPlayer(),
+            NSCP.getUtil().sendMessage(event.getPlayer(),
                     "Only english and ASCII characters, please.");
             event.setCancelled(true);
         }

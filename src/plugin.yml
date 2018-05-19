@@ -11,3 +11,5 @@ commands:
         description: Gets the statistics for a player. Warnings, etc.
     announce:
         description: Announces something now.
+    warn:
+        description: Warn a player.
