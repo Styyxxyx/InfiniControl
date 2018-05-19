@@ -49,7 +49,7 @@ public class DomainFilter implements Listener {
             message = message.replace(m.group(), NSCP.getOptions()
                     .getReplacementForAds());
             for (Player p1 : Bukkit.getServer().getOnlinePlayers()) {
-                if (p1.hasPermission("ic.admin"))
+                if (p1.hasPermission("ic.admin") || p1.isOp())
                     NSCP.getUtil().sendMessage(p1, "Player: &6"
                             + event.getPlayer().getName() + "&7 AKA:&6 "
                             + event.getPlayer().getDisplayName()

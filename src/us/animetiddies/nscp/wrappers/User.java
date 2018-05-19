@@ -52,6 +52,14 @@ public class User {
                 "SET infractions = " + totalWarings + " " +
                 "WHERE id = " + getID();
         NSCP.getNetwork().executeUpdate(query, this);
+        sendMessage("You have violated a rule and have been warned! You currently have &c" + getInfractions() + " &7infractions!");
         return false;
+    }
+
+    public void pardon() {
+        String query = "UPDATE infinidata " +
+                "SET infractions = 0 WHERE id = " + getID();
+        NSCP.getNetwork().executeUpdate(query, this);
+        sendMessage("You have been pardoned.");
     }
 }

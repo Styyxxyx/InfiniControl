@@ -27,10 +27,15 @@ public class CmdWarn implements CommandExecutor {
             if (args.length == 1) {
                 user.addInfractions(1);
                 NSCP.getUtil().sendMessage(sender, "Warned " + user.getName());
-                user.sendMessage("You have violated a rule and have been warned! You currently have &c" + user.getInfractions() + " &7infractions!");
-
+                NSCP.getUtil().sendMessage(sender, "They now have " + user.getInfractions() + " warnings.");
             } else {
-                int increment = Integer.parseInt(args[1]);
+                int increment;
+                try {
+                    increment = Integer.parseInt(args[1]);
+                } catch (NumberFormatException e) {
+                    increment = Integer.MAX_VALUE;
+                }
+
                 user.addInfractions(increment);
                 NSCP.getUtil().sendMessage(sender, "Warned " + user.getName() + " with " + increment + " warnings.");
                 NSCP.getUtil().sendMessage(sender, "They now have " + user.getInfractions() + " warnings.");

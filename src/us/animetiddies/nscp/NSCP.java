@@ -5,10 +5,7 @@ import org.bukkit.Material;
 import org.bukkit.entity.EntityType;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
-import us.animetiddies.nscp.commands.CmdAnnounce;
-import us.animetiddies.nscp.commands.CmdReload;
-import us.animetiddies.nscp.commands.CmdStats;
-import us.animetiddies.nscp.commands.CmdWarn;
+import us.animetiddies.nscp.commands.*;
 import us.animetiddies.nscp.listeners.*;
 import us.animetiddies.nscp.network.Network;
 import us.animetiddies.nscp.tasks.AutoAnnounce;
@@ -56,6 +53,7 @@ public class NSCP extends JavaPlugin {
         getCommand("stats").setExecutor(new CmdStats(this));
         getCommand("announce").setExecutor(new CmdAnnounce());
         getCommand("warn").setExecutor(new CmdWarn(this));
+        getCommand("pardon").setExecutor(new CmdPardon());
     }
 
     private void loadConfig() {

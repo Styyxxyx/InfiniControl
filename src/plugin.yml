@@ -13,3 +13,5 @@ commands:
         description: Announces something now.
     warn:
         description: Warn a player.
+    pardon:
+        description: Pardon a player.
