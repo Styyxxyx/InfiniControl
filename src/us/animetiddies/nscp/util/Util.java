@@ -1,4 +1,4 @@
-package com.maxisociety.nscp.util;
+package us.animetiddies.nscp.util;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;

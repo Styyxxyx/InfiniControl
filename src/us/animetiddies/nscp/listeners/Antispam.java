@@ -1,6 +1,5 @@
-package com.maxisociety.nscp.listeners;
+package us.animetiddies.nscp.listeners;
 
-import com.maxisociety.nscp.NSCP;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
@@ -11,6 +10,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.CreatureSpawnEvent;
 import org.bukkit.event.entity.EntityShootBowEvent;
 import org.bukkit.util.Vector;
+import us.animetiddies.nscp.NSCP;
 
 public class Antispam implements Listener {
 

@@ -1,7 +1,7 @@
-package com.maxisociety.nscp.tasks;
+package us.animetiddies.nscp.tasks;
 
-import com.maxisociety.nscp.NSCP;
 import org.bukkit.Bukkit;
+import us.animetiddies.nscp.NSCP;
 
 public class AutoAnnounce implements Runnable {
     public void run() {

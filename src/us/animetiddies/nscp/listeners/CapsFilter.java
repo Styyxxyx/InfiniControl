@@ -1,10 +1,10 @@
-package com.maxisociety.nscp.listeners;
+package us.animetiddies.nscp.listeners;
 
-import com.maxisociety.nscp.NSCP;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
+import us.animetiddies.nscp.NSCP;
 
 public class CapsFilter implements Listener {
 

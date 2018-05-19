@@ -1,19 +1,19 @@
-package com.maxisociety.nscp;
+package us.animetiddies.nscp;
 
-import com.maxisociety.nscp.commands.CmdAnnounce;
-import com.maxisociety.nscp.commands.CmdReload;
-import com.maxisociety.nscp.commands.CmdStats;
-import com.maxisociety.nscp.commands.CmdWarn;
-import com.maxisociety.nscp.listeners.*;
-import com.maxisociety.nscp.network.Network;
-import com.maxisociety.nscp.tasks.AutoAnnounce;
-import com.maxisociety.nscp.util.Options;
-import com.maxisociety.nscp.util.Util;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.EntityType;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
+import us.animetiddies.nscp.commands.CmdAnnounce;
+import us.animetiddies.nscp.commands.CmdReload;
+import us.animetiddies.nscp.commands.CmdStats;
+import us.animetiddies.nscp.commands.CmdWarn;
+import us.animetiddies.nscp.listeners.*;
+import us.animetiddies.nscp.network.Network;
+import us.animetiddies.nscp.tasks.AutoAnnounce;
+import us.animetiddies.nscp.util.Options;
+import us.animetiddies.nscp.util.Util;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -111,5 +111,9 @@ public class NSCP extends JavaPlugin {
 
     public static Options getOptions() {
         return options;
+    }
+
+    public static Network getNetwork() {
+        return network;
     }
 }
