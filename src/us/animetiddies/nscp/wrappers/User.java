@@ -3,6 +3,7 @@ package us.animetiddies.nscp.wrappers;
 import org.bukkit.entity.Player;
 import us.animetiddies.nscp.NSCP;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -15,10 +16,16 @@ public class User {
     }
 
     private ResultSet getUserData() {
-        return NSCP.getNetwork().getUserData(player.getName());
+        return NSCP.getNetwork().executeQuery("SELECT * FROM infinidata WHERE username = '" + player.getName() + "'");
     }
 
-    public int getID() {
+    private ResultSet getChatHistory() {
+        return NSCP.getNetwork().executeQuery("SELECT * FROM chatlogs WHERE username = '" + player.getName() + "'");
+    }
+
+    ;
+
+    private int getID() {
         try {
             return getUserData().getInt("id");
         } catch (SQLException e) {
@@ -40,7 +47,7 @@ public class User {
         }
     }
 
-    public void sendMessage(String message) {
+    private void sendMessage(String message) {
         NSCP.getUtil().sendMessage(player, message);
     }
 
@@ -51,15 +58,27 @@ public class User {
         String query = "UPDATE infinidata " +
                 "SET infractions = " + totalWarings + " " +
                 "WHERE id = " + getID();
-        NSCP.getNetwork().executeUpdate(query, this);
         sendMessage("You have violated a rule and have been warned! You currently have &c" + getInfractions() + " &7infractions!");
-        return false;
+        return NSCP.getNetwork().executeUpdate(query);
     }
 
     public void pardon() {
         String query = "UPDATE infinidata " +
                 "SET infractions = 0 WHERE id = " + getID();
-        NSCP.getNetwork().executeUpdate(query, this);
+        NSCP.getNetwork().executeUpdate(query);
         sendMessage("You have been pardoned.");
+    }
+
+    public boolean logMessage(String message) {
+        String query = null;
+        query = "INSERT INTO chatlogs(username, messages) VALUES('" + getName() + "', ?)";
+        try {
+            PreparedStatement ps = NSCP.getNetwork().getConnection().prepareStatement(query);
+            ps.setString(1, message);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 }

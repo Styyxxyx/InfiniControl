@@ -14,16 +14,13 @@ public class UnicodeFilter implements Listener {
     @EventHandler(priority = EventPriority.HIGH)
     public void onChat(AsyncPlayerChatEvent event) {
 
-        if (!NSCP.getOptions().filterUnicode()
-                || event.getPlayer().hasPermission("filter.bypass.unicode"))
-            return;
+        if (!NSCP.getOptions().filterUnicode() || event.getPlayer().hasPermission("filter.bypass.unicode")) return;
         Pattern regex = Pattern.compile(".*[^\\x20-\\x7F].*");
 
         Matcher regexMatcher = regex.matcher(event.getMessage());
 
         if (regexMatcher.find()) {
-            NSCP.getUtil().sendMessage(event.getPlayer(),
-                    "Only english and ASCII characters, please.");
+            NSCP.getUtil().sendMessage(event.getPlayer(), "Only english and ASCII characters, please.");
             event.setCancelled(true);
         }
     }

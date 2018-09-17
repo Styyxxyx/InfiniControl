@@ -20,8 +20,7 @@ public class FilterProfanity implements Listener {
         if (event.isCancelled())
             return;
 
-        if (!NSCP.getOptions().enableProfanityFilter()
-                || event.getPlayer().hasPermission("filter.bypass.profanity"))
+        if (!NSCP.getOptions().enableProfanityFilter() || event.getPlayer().hasPermission("filter.bypass.profanity"))
             return;
 
         String response;
@@ -35,8 +34,7 @@ public class FilterProfanity implements Listener {
             //String[] violations = new String[wordsToParse.length];
 
             //for (int i = 0; i < violations.length; i++) {
-            api = new URL("http://www.wdylike.appspot.com/?q=" + message.replaceAll("\\s", "%20")
-                    .replaceAll("_", "%20"));
+            api = new URL("http://www.wdylike.appspot.com/?q=" + message.replaceAll("\\s", "%20").replaceAll("_", "%20"));
             BufferedReader in = new BufferedReader(new InputStreamReader(api.openStream()));
 
             while ((response = in.readLine()) != null) {

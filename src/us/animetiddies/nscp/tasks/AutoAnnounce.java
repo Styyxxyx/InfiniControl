@@ -5,8 +5,6 @@ import us.animetiddies.nscp.NSCP;
 
 public class AutoAnnounce implements Runnable {
     public void run() {
-        Bukkit.getServer().broadcastMessage(
-                NSCP.getUtil().colorString(NSCP.getOptions().getPrefix() + NSCP.getOptions()
-                        .getRandEntry(), '&'));
+        Bukkit.getServer().broadcastMessage(NSCP.getUtil().colorString(NSCP.getOptions().getPrefix() + NSCP.getOptions().getRandEntry(), '&'));
     }
 }

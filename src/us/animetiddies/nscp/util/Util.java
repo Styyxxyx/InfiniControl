@@ -23,8 +23,7 @@ public class Util {
     }
 
     public void sendMessage(Object p, String message) {
-        message = ChatColor.translateAlternateColorCodes('&',
-                "&8[&6InfiniControl&8]:&7 " + message);
+        message = ChatColor.translateAlternateColorCodes('&', "&8[&6InfiniControl&8]:&7 " + message);
         if (p instanceof Player) {
             Player player = (Player) p;
             player.sendMessage(message);
@@ -34,26 +33,21 @@ public class Util {
     }
 
     public void asyncKick(final Player p, final String message, Plugin plugin) {
-        Bukkit.getScheduler().runTask(plugin, () -> p.kickPlayer(ChatColor.translateAlternateColorCodes('&',
-                message)));
+        Bukkit.getScheduler().runTask(plugin, () -> p.kickPlayer(ChatColor.translateAlternateColorCodes('&', message)));
     }
 
     public void createFile(String fileName, Plugin plugin) {
         Writer writer = null;
         try {
-            writer = new BufferedWriter(new OutputStreamWriter(
-                    new FileOutputStream(plugin.getDataFolder() + "/"
-                            + fileName), "utf-8"));
+            writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(plugin.getDataFolder() + "/" + fileName), "utf-8"));
             writer.write("warnings 0");
         } catch (IOException ex) {
-            plugin.getLogger().log(Level.SEVERE,
-                    "Couldn't create player Data: " + ex.getMessage());
+            plugin.getLogger().log(Level.SEVERE, "Couldn't create player Data: " + ex.getMessage());
         } finally {
             try {
                 writer.close();
             } catch (Exception ex) {
-                plugin.getLogger().log(Level.SEVERE,
-                        "An error occured: " + ex.getMessage());
+                plugin.getLogger().log(Level.SEVERE, "An error occured: " + ex.getMessage());
             }
         }
     }
@@ -105,12 +99,10 @@ public class Util {
         return ChatColor.translateAlternateColorCodes(symbol, s);
     }
 
-    public ArrayList<String> getLinesFromFile(String fileName,
-                                              Plugin plugin) {
+    public ArrayList<String> getLinesFromFile(String fileName, Plugin plugin) {
         ArrayList<String> lines = new ArrayList<>();
         try {
-            BufferedReader br = new BufferedReader(new FileReader(
-                    plugin.getDataFolder() + "/" + fileName));
+            BufferedReader br = new BufferedReader(new FileReader(plugin.getDataFolder() + "/" + fileName));
             String line;
 
             while ((line = br.readLine()) != null) {

@@ -25,9 +25,10 @@ public class CmdWarn implements CommandExecutor {
             }
             User user = new User(Bukkit.getPlayer(args[0]));
             if (args.length == 1) {
-                user.addInfractions(1);
-                NSCP.getUtil().sendMessage(sender, "Warned " + user.getName());
-                NSCP.getUtil().sendMessage(sender, "They now have " + user.getInfractions() + " warnings.");
+                if (user.addInfractions(1)) {
+                    NSCP.getUtil().sendMessage(sender, "Warned " + user.getName());
+                    NSCP.getUtil().sendMessage(sender, "They now have " + user.getInfractions() + " warnings.");
+                }
             } else {
                 int increment;
                 try {
@@ -35,10 +36,10 @@ public class CmdWarn implements CommandExecutor {
                 } catch (NumberFormatException e) {
                     increment = Integer.MAX_VALUE;
                 }
-
-                user.addInfractions(increment);
-                NSCP.getUtil().sendMessage(sender, "Warned " + user.getName() + " with " + increment + " warnings.");
-                NSCP.getUtil().sendMessage(sender, "They now have " + user.getInfractions() + " warnings.");
+                if (user.addInfractions(increment)) {
+                    NSCP.getUtil().sendMessage(sender, "Warned " + user.getName() + " with " + increment + " warnings.");
+                    NSCP.getUtil().sendMessage(sender, "They now have " + user.getInfractions() + " warnings.");
+                }
             }
         }
         return false;

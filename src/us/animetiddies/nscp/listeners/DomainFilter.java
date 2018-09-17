@@ -26,8 +26,7 @@ public class DomainFilter implements Listener {
     @EventHandler(priority = EventPriority.NORMAL)
     public void NoIP(final AsyncPlayerChatEvent event) {
 
-        if (!NSCP.getOptions().filterDomains()
-                || event.getPlayer().hasPermission("filter.bypass.domains"))
+        if (!NSCP.getOptions().filterDomains() || event.getPlayer().hasPermission("filter.bypass.domains"))
             return;
         String messageToSendToAdmins = event.getMessage();
         String message = event.getMessage();
@@ -36,8 +35,7 @@ public class DomainFilter implements Listener {
 
         boolean found = false;
 
-        Pattern p = Pattern
-                .compile("\\b\\d{1,3}+\\p{P}*\\d{1,3}+\\p{P}*\\d{1,3}+\\p{P}*\\d{1,3}+\\b|((?:[\\w]+\\.)+)([a-zA-Z]{2,4})");
+        Pattern p = Pattern.compile("\\b\\d{1,3}+\\p{P}*\\d{1,3}+\\p{P}*\\d{1,3}+\\p{P}*\\d{1,3}+\\b|((?:[\\w]+\\.)+)([a-zA-Z]{2,4})");
         Matcher m = p.matcher(message);
         mainLoop:
         while (m.find()) {
@@ -50,9 +48,8 @@ public class DomainFilter implements Listener {
                     .getReplacementForAds());
             for (Player p1 : Bukkit.getServer().getOnlinePlayers()) {
                 if (p1.hasPermission("ic.admin") || p1.isOp())
-                    NSCP.getUtil().sendMessage(p1, "Player: &6"
-                            + event.getPlayer().getName() + "&7 AKA:&6 "
-                            + event.getPlayer().getDisplayName()
+                    NSCP.getUtil().sendMessage(p1, "Player: &6" + event.getPlayer().getName()
+                            + "&7 AKA:&6 " + event.getPlayer().getDisplayName()
                             + " &7tried to advertise. Message: &6"
                             + messageToSendToAdmins + "&7.");
                 plugin.getLogger().log(Level.SEVERE, NSCP.getUtil().colorString("Player: &6"
@@ -63,8 +60,7 @@ public class DomainFilter implements Listener {
             }
         }
         if (NSCP.getOptions().kickOnAdvertise() && found) {
-            NSCP.getUtil().asyncKick(event.getPlayer(), NSCP.getOptions()
-                    .getKickMessage(), plugin);
+            NSCP.getUtil().asyncKick(event.getPlayer(), NSCP.getOptions().getKickMessage(), plugin);
             event.setCancelled(true);
         } else {
             event.setMessage(message);
@@ -75,8 +71,7 @@ public class DomainFilter implements Listener {
     @EventHandler(priority = EventPriority.NORMAL)
     public void NoIPMessage(final PlayerCommandPreprocessEvent event) {
 
-        if (!NSCP.getOptions().enableProfanityFilter()
-                || event.getPlayer().hasPermission("filter.bypass.domains"))
+        if (!NSCP.getOptions().enableProfanityFilter() || event.getPlayer().hasPermission("filter.bypass.domains"))
             return;
         String messageToSendToAdmins = event.getMessage();
         String message = event.getMessage();
@@ -85,8 +80,7 @@ public class DomainFilter implements Listener {
 
         boolean found = false;
 
-        Pattern p = Pattern
-                .compile("\\b\\d{1,3}+\\p{P}*\\d{1,3}+\\p{P}*\\d{1,3}+\\p{P}*\\d{1,3}+\\b|((?:[\\w]+\\.)+)([a-zA-Z]{2,4})");
+        Pattern p = Pattern.compile("\\b\\d{1,3}+\\p{P}*\\d{1,3}+\\p{P}*\\d{1,3}+\\p{P}*\\d{1,3}+\\b|((?:[\\w]+\\.)+)([a-zA-Z]{2,4})");
         Matcher m = p.matcher(message);
         mainLoop:
         while (m.find()) {
@@ -95,8 +89,7 @@ public class DomainFilter implements Listener {
                     continue mainLoop;
             }
             found = true;
-            message = message.replace(m.group(), NSCP.getOptions()
-                    .getReplacementForAds());
+            message = message.replace(m.group(), NSCP.getOptions().getReplacementForAds());
             for (Player p1 : Bukkit.getServer().getOnlinePlayers()) {
                 if (p1.hasPermission("ic.admin"))
                     NSCP.getUtil().sendMessage(p1, "Player: &6"
@@ -107,8 +100,7 @@ public class DomainFilter implements Listener {
             }
         }
         if (NSCP.getOptions().kickOnAdvertise() && found) {
-            NSCP.getUtil().asyncKick(event.getPlayer(), NSCP.getOptions()
-                    .getKickMessage(), plugin);
+            NSCP.getUtil().asyncKick(event.getPlayer(), NSCP.getOptions().getKickMessage(), plugin);
             event.setCancelled(true);
         } else {
             event.setMessage(message);

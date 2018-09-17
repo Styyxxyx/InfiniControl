@@ -39,8 +39,7 @@ public class Options {
     }
 
     public List<String> getCurseWords() {
-        List<String> curseWords = plugin.getConfig().getStringList(
-                "curse.words");
+        List<String> curseWords = plugin.getConfig().getStringList("curse.words");
 
         List<String> fixedCurseWords = new ArrayList<>();
 
@@ -79,8 +78,7 @@ public class Options {
     }
 
     public String getReplacementForAds() {
-        return plugin.getConfig().getString(
-                "options.domains.advertisement.replaceWith");
+        return plugin.getConfig().getString("options.domains.advertisement.replaceWith");
     }
 
     public boolean kickOnAdvertise() {

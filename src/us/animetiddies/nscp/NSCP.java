@@ -25,6 +25,10 @@ public class NSCP extends JavaPlugin {
     public static HashMap<String, Material> bowGunBlock = new HashMap<>();
     public static HashMap<String, EntityType> bowGunEntity = new HashMap<>();
 
+    public static Network getNetwork() {
+        return network;
+    }
+
     public void onEnable() {
 
         PluginManager pm = Bukkit.getServer().getPluginManager();
@@ -35,7 +39,8 @@ public class NSCP extends JavaPlugin {
         pm.registerEvents(new Antispam(), this);
         pm.registerEvents(new FilterProfanity(), this);
         pm.registerEvents(new CapsFilter(), this);
-        pm.registerEvents(new onLogin(this), this);
+        pm.registerEvents(new onLogin(), this);
+        pm.registerEvents(new ChatLogger(), this);
 
         options = new Options(this);
         util = new Util(this);
@@ -44,16 +49,21 @@ public class NSCP extends JavaPlugin {
         network.connect();
         network.init();
 
-        Bukkit.getServer()
-                .getScheduler()
-                .scheduleSyncRepeatingTask(this, new AutoAnnounce(), 0,
-                        getOptions().getDelay() * 20);
+        Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(this, new AutoAnnounce(), 0, getOptions().getDelay() * 20);
 
         getCommand("ireload").setExecutor(new CmdReload(this));
         getCommand("stats").setExecutor(new CmdStats(this));
         getCommand("announce").setExecutor(new CmdAnnounce());
         getCommand("warn").setExecutor(new CmdWarn(this));
         getCommand("pardon").setExecutor(new CmdPardon());
+    }
+
+    public static Util getUtil() {
+        return util;
+    }
+
+    public static Options getOptions() {
+        return options;
     }
 
     private void loadConfig() {
@@ -69,29 +79,22 @@ public class NSCP extends JavaPlugin {
             getConfig().addDefault("options.filter.domains", true);
 
             getConfig().addDefault("options.domains.kickOnAdvertise", false);
-            getConfig().addDefault("options.domains.advertisement.replaceWith",
-                    "ADVERTISEMENT");
-            getConfig().addDefault("options.domains.kickMessage",
-                    "&cAdvertising is not tolerated!");
+            getConfig().addDefault("options.domains.advertisement.replaceWith", "ADVERTISEMENT");
+            getConfig().addDefault("options.domains.kickMessage", "&cAdvertising is not tolerated!");
 
             /*
               Add Defaults.
              */
-            String[] defaultFilters = {"ass", "fuck", "fvck", "bitch",
-                    "nigger", "nigga", "fag", "f@g", "motherfucker", "fucker"};
-            String[] exceptions = {"maxisociety.com", "google.com",
-                    "youtube.com"};
+            String[] defaultFilters = {"ass", "fuck", "fvck", "bitch", "nigger", "nigga", "fag", "f@g", "motherfucker", "fucker"};
+            String[] exceptions = {"maxisociety.com", "google.com", "youtube.com"};
             String[] announcements = {"Place as many as needed."};
 
-            getConfig()
-                    .addDefault("curse.words", Arrays.asList(defaultFilters));
-            getConfig().addDefault("options.domains.exceptions",
-                    Arrays.asList(exceptions));
+            getConfig().addDefault("curse.words", Arrays.asList(defaultFilters));
+            getConfig().addDefault("options.domains.exceptions", Arrays.asList(exceptions));
             getConfig().addDefault("curse.replacement", "boop");
             getConfig().addDefault("options.caps.sentenceTriggerSize", 10);
             getConfig().addDefault("options.caps.threshold", 75);
-            getConfig().addDefault("autoannounce.entries",
-                    Arrays.asList(announcements));
+            getConfig().addDefault("autoannounce.entries", Arrays.asList(announcements));
             getConfig().addDefault("autoannounce.interval", 60);
             getConfig().addDefault("autoannouce.prefix", "&2[&aBlockArray&2] ");
             getConfig().addDefault("mysql.host", "localhost");
@@ -101,17 +104,5 @@ public class NSCP extends JavaPlugin {
             getConfig().addDefault("mysql.table", "infinidata");
         }
         saveConfig();
-    }
-
-    public static Util getUtil() {
-        return util;
-    }
-
-    public static Options getOptions() {
-        return options;
-    }
-
-    public static Network getNetwork() {
-        return network;
     }
 }

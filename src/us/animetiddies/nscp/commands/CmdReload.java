@@ -23,21 +23,18 @@ public class CmdReload implements CommandExecutor {
                              String alias, String[] args) {
 
         if (!sender.hasPermission("filter.reload")) {
-            NSCP.getUtil().sendMessage(sender,
-                    "&cYou don't have permission to perform this command!");
+            NSCP.getUtil().sendMessage(sender, "&cYou don't have permission to perform this command!");
             return false;
         }
         if (!(sender instanceof Player)) {
             plugin.reloadConfig();
-            plugin.getLogger().log(Level.INFO,
-                    "Configuration successfully reloaded.");
+            plugin.getLogger().log(Level.INFO, "Configuration successfully reloaded.");
             Bukkit.getScheduler().cancelTasks(plugin);
             Bukkit.getScheduler().scheduleSyncRepeatingTask(plugin,
                     new AutoAnnounce(), 0, NSCP.getOptions().getDelay() * 20);
         } else {
             plugin.reloadConfig();
-            NSCP.getUtil().sendMessage(sender,
-                    "Configuration successfully reloaded.");
+            NSCP.getUtil().sendMessage(sender, "Configuration successfully reloaded.");
 
             Bukkit.getScheduler().cancelTasks(plugin);
             Bukkit.getScheduler().scheduleSyncRepeatingTask(plugin,

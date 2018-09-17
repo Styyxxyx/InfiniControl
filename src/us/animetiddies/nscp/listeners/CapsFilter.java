@@ -10,12 +10,10 @@ public class CapsFilter implements Listener {
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void antiCaps(AsyncPlayerChatEvent event) {
-        if (!NSCP.getOptions().filterCapsLock()
-                || event.getPlayer().hasPermission("filter.bypass.caps"))
+        if (!NSCP.getOptions().filterCapsLock() || event.getPlayer().hasPermission("filter.bypass.caps"))
             return;
         String message = event.getMessage();
-        int realMessageLength = message.replaceAll("[^0-9a-zA-Z]+", "")
-                .length();
+        int realMessageLength = message.replaceAll("[^0-9a-zA-Z]+", "").length();
 
         if (realMessageLength >= NSCP.getOptions().getCapstrigger()) {
             char[] messageChars = event.getMessage().toCharArray();
@@ -26,10 +24,7 @@ public class CapsFilter implements Listener {
                 if (Character.isUpperCase(c))
                     upperCaseCount++;
             if (upperCaseCount > 0) {
-
-                double capsAmt = Math
-                        .floor(((double) upperCaseCount / (double) realMessageLength) * 100.0);
-
+                double capsAmt = Math.floor(((double) upperCaseCount / (double) realMessageLength) * 100.0);
                 if (capsAmt >= NSCP.getOptions().getCapsThreshold()) {
                     event.setMessage(message.toLowerCase());
                 }
