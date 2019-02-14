@@ -11,9 +11,6 @@ import org.bukkit.Material;
 import org.bukkit.entity.EntityType;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
-import us.animetiddies.nscp.commands.*;
-import us.animetiddies.nscp.listeners.*;
-
 import java.util.Arrays;
 import java.util.HashMap;
 
