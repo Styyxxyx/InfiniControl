@@ -1,12 +1,12 @@
-package us.animetiddies.nscp.commands;
+package me.xinnir.nscp.commands;
 
+import me.xinnir.nscp.NSCP;
+import me.xinnir.nscp.wrappers.User;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.Plugin;
-import us.animetiddies.nscp.NSCP;
-import us.animetiddies.nscp.wrappers.User;
 
 public class CmdWarn implements CommandExecutor {
 

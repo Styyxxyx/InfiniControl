@@ -1,10 +1,10 @@
-package us.animetiddies.nscp.listeners;
+package me.xinnir.nscp.listeners;
 
+import me.xinnir.nscp.NSCP;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
-import us.animetiddies.nscp.NSCP;
 
 /**
  * Created by maverick on 12/24/13.

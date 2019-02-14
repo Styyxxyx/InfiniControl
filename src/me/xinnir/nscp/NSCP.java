@@ -1,5 +1,11 @@
-package us.animetiddies.nscp;
+package me.xinnir.nscp;
 
+import me.xinnir.nscp.commands.*;
+import me.xinnir.nscp.listeners.*;
+import me.xinnir.nscp.network.Network;
+import me.xinnir.nscp.tasks.AutoAnnounce;
+import me.xinnir.nscp.util.Options;
+import me.xinnir.nscp.util.Util;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.EntityType;
@@ -7,10 +13,6 @@ import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import us.animetiddies.nscp.commands.*;
 import us.animetiddies.nscp.listeners.*;
-import us.animetiddies.nscp.network.Network;
-import us.animetiddies.nscp.tasks.AutoAnnounce;
-import us.animetiddies.nscp.util.Options;
-import us.animetiddies.nscp.util.Util;
 
 import java.util.Arrays;
 import java.util.HashMap;

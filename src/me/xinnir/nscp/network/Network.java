@@ -1,7 +1,7 @@
-package us.animetiddies.nscp.network;
+package me.xinnir.nscp.network;
 
 import org.bukkit.Bukkit;
-import us.animetiddies.nscp.NSCP;
+import me.xinnir.nscp.NSCP;
 
 import java.sql.*;
 import java.util.logging.Level;

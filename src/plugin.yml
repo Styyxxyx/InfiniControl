@@ -2,7 +2,7 @@ name: InfiniControl
 version: 1.0
 description: Denys the use of Unicode characters, so they can't bypass a swear filter
 author: Styyxx
-main: us.animetiddies.nscp.NSCP
+main: NSCP
 commands:
     ireload:
         description: Reloads the plugin from the modified configuration.

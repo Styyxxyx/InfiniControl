@@ -1,11 +1,11 @@
-package us.animetiddies.nscp.listeners;
+package me.xinnir.nscp.listeners;
 
 import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
-import us.animetiddies.nscp.wrappers.User;
+import me.xinnir.nscp.wrappers.User;
 
 import java.time.LocalDateTime;
 

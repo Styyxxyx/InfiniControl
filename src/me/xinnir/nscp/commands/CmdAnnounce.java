@@ -1,11 +1,11 @@
-package us.animetiddies.nscp.commands;
+package me.xinnir.nscp.commands;
 
+import me.xinnir.nscp.NSCP;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import us.animetiddies.nscp.NSCP;
 
 public class CmdAnnounce implements CommandExecutor {
 

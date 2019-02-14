@@ -1,4 +1,4 @@
-package us.animetiddies.nscp.util;
+package me.xinnir.nscp.util;
 
 import org.bukkit.plugin.Plugin;
 

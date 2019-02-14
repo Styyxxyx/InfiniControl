@@ -1,7 +1,7 @@
-package us.animetiddies.nscp.wrappers;
+package me.xinnir.nscp.wrappers;
 
+import me.xinnir.nscp.NSCP;
 import org.bukkit.entity.Player;
-import us.animetiddies.nscp.NSCP;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
